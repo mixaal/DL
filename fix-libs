@@ -1,0 +1,2 @@
+cd /usr/local/cuda-10.1/lib64
+for lib in $(ls *10.1* | sed -e 's/.10.1.*//g' | uniq); do ln -s "$lib" "$lib.10.0" ; done
