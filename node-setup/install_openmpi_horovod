@@ -8,8 +8,7 @@ mkdir build && cd build
 make all install
 mpicxx -show
 source ~/venvs/tensorflow/bin/activate
-yum install devtoolset-8 # for horovod
-#scl enable devtoolset-8  bash
-#pip install horovod
-scl enable devtoolset-8 pip install horovod
+yum install -y devtoolset-8 # for horovod
+scl enable devtoolset-8  bash 
+pip install horovod
 EOC

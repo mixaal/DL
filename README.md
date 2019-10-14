@@ -15,7 +15,7 @@ mixaal-gpu-2 slots=1
 ...
 ```
 
-Number of slots denotes the number of GPU in your VMs.
+Number of slots denotes the number of GPU in your VMs. Make sure to distribute the ssh keys on root between all nodes.
 
 
 ```

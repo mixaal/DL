@@ -9,6 +9,6 @@ $SCP -r node-setup $USER@$h:~
 $SSH $h node-setup/keygen
 echo "Installing on : $h"
 $SSH $h node-setup/install-on-oci-node
-$SSH $h node-setup/fix-libs
+$SSH $h node-setup/fix-libs || echo "Links already done"
 $SSH $h node-setup/install_openmpi_horovod
 done
