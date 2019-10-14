@@ -1,4 +1,5 @@
 sudo su - <<EOC
+rm -rf ~/venvs
 echo "Show nvidia info...."
 nvidia-smi # show info on NVIDIA Tesla GPU (i.e are we on correct image?)
 echo "Install essential packages...."
@@ -15,8 +16,7 @@ echo "Make sure cuda is installed...."
 yum install -y cuda-10-1
 echo "Install keras...."
 pip install keras
-echo "Fix library not found issues...."
-./fix-libs
-ln -s /usr/lib64/libcublas.so.10 /usr/lib64/libcublas.so.10.0
-export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
+echo "LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
+echo "source ~/venvs/tensorflow/bin/activate" >> ~/.bashrc
+iptables -F
 EOC

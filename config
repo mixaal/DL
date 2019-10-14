@@ -1,0 +1,3 @@
+USER=opc
+SSH="/usr/bin/ssh -l $USER"
+SCP="scp"

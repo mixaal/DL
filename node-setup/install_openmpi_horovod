@@ -1,4 +1,5 @@
 sudo su - <<EOC
+rm -rf openmpi*
 wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.2.tar.gz
 tar xzvf openmpi-4.0.2.tar.gz 
 cd openmpi-4.0.2/
@@ -8,6 +9,7 @@ make all install
 mpicxx -show
 source ~/venvs/tensorflow/bin/activate
 yum install devtoolset-8 # for horovod
-scl enable devtoolset-8  bash
-pip install horovod
+#scl enable devtoolset-8  bash
+#pip install horovod
+scl enable devtoolset-8 pip install horovod
 EOC

@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+. config
+
+for h in $(awk '{print $1}' hosts); do 
+echo "Copy files to host : $h"
+$SSH $h rm -rf node-setup 
+$SCP -r node-setup $USER@$h:~
+$SSH $h node-setup/keygen
+echo "Installing on : $h"
+$SSH $h node-setup/install-on-oci-node
+$SSH $h node-setup/fix-libs
+$SSH $h node-setup/install_openmpi_horovod
+done

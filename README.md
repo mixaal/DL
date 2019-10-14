@@ -1,3 +1,23 @@
+# Deep Learning Setup
+
+Create you instances in cloud, the name will be the one which must reside in `/etc/hosts` file. Add public IP address to your /etc/hosts file:
+
+```
+<first ip>     mixaal-gpu-1
+<second ip>     mixaal-gpu-2
+...
+```
+
+Make sure you have all your gpu instances listed in `hosts` file:
+```
+mixaal-gpu-1 slots=1
+mixaal-gpu-2 slots=1
+...
+```
+
+Number of slots denotes the number of GPU in your VMs.
+
+
 ```
 # Oracle 7.7 GPU support
 #https://blogs.oracle.com/wim/using-a-baremetal-gpu-shape-in-oracle-cloud-infrastructure-with-oracle-linux-7-and-tensorflow
