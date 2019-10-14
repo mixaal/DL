@@ -16,7 +16,7 @@ echo "Make sure cuda is installed...."
 yum install -y cuda-10-1
 echo "Install keras...."
 pip install keras
-echo "LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
+echo "export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo "source ~/venvs/tensorflow/bin/activate" >> ~/.bashrc
 iptables -F
 EOC
