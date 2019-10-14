@@ -1,5 +1,29 @@
 sudo su - <<EOC
+set -x
 cd /usr/local/cuda-10.1/lib64
-for lib in $(ls *10.1* | sed -e 's/.10.1.*//g' | uniq); do ln -s "$lib" "$lib.10.0" ; done
+ln -s libaccinj64.so libaccinj64.so.10.0
+ln -s libcudart.so libcudart.so.10.0
+ln -s libcufft.so libcufft.so.10.0
+ln -s libcufftw.so libcufftw.so.10.0
+ln -s libcuinj64.so libcuinj64.so.10.0
+ln -s libcurand.so libcurand.so.10.0
+ln -s libcusolver.so libcusolver.so.10.0
+ln -s libcusparse.so libcusparse.so.10.0
+ln -s libnppc.so libnppc.so.10.0
+ln -s libnppial.so libnppial.so.10.0
+ln -s libnppicc.so libnppicc.so.10.0
+ln -s libnppicom.so libnppicom.so.10.0
+ln -s libnppidei.so libnppidei.so.10.0
+ln -s libnppif.so libnppif.so.10.0
+ln -s libnppig.so libnppig.so.10.0
+ln -s libnppim.so libnppim.so.10.0
+ln -s libnppist.so libnppist.so.10.0
+ln -s libnppisu.so libnppisu.so.10.0
+ln -s libnppitc.so libnppitc.so.10.0
+ln -s libnpps.so libnpps.so.10.0
+ln -s libnvgraph.so libnvgraph.so.10.0
+ln -s libnvjpeg.so libnvjpeg.so.10.0
+ln -s libnvrtc-builtins.so libnvrtc-builtins.so.10.0
+ln -s libnvrtc.so libnvrtc.so.10.0
 ln -s /usr/lib64/libcublas.so.10 /usr/lib64/libcublas.so.10.0
 EOC
