@@ -60,3 +60,15 @@ Run horovod:
 ```
 time horovodrun -np 2 -H mixaal-gpu-2:1,mixaal-gpu-1:1 bash -c /root/run_horovod.sh
 ```
+
+Run jupyter:
+```
+jupyter notebook --allow-root --ip 127.0.0.1
+```
+
+From your desktop:
+```
+ssh -L 8888:localhost:8888 root@mixaal-gpu-1
+```
+
+Now you can access the notebook via the URL you see in the jupyter console.
