@@ -1,5 +1,10 @@
 # Deep Learning Setup
 
+The following combination is supported:
+ * tensorflow-gpu 2.0.0
+ * cuda-10.1.168
+ * libcudnn 7.6.4
+
 Create you instances in cloud, the name will be the one which must reside in `/etc/hosts` file. Add public IP address to your /etc/hosts file:
 
 ```
@@ -17,40 +22,24 @@ mixaal-gpu-2 slots=1
 
 Number of slots denotes the number of GPU in your VMs. Make sure to distribute the ssh keys on root between all nodes.
 
+Now download libcudnn from nvidia, make sure you obey the license:
+https://docs.nvidia.com/deeplearning/sdk/cudnn-sla/index.html
+
+Here is the download link (you must be in nvidia free developer program):
+https://developer.nvidia.com/compute/machine-learning/cudnn/secure/7.6.4.38/Production/10.1_20190923/cudnn-10.1-linux-x64-v7.6.4.38.tgz
+
+Unzip the library and:
 
 ```
-# Oracle 7.7 GPU support
-#https://blogs.oracle.com/wim/using-a-baremetal-gpu-shape-in-oracle-cloud-infrastructure-with-oracle-linux-7-and-tensorflow
-nvidia-smi # show info on NVIDIA Tesla GPU (i.e are we on correct image?)
-sudo yum -y install python-pip python-devel atlas atlas-devel gcc-gfortran openssl-devel libffi-devel
-pip install --upgrade pip
-pip install --upgrade virtualenv
-virtualenv --system-site-packages ~/venvs/tensorflow
-source ~/venvs/tensorflow/bin/activate
-pip install --upgrade tensorflow-gpu
-yum install -y cuda-10-1
-pip install keras
+sudo su -
+tar xzvf cudnn-10.1-linux-x64-v7.6.4.38.tgz 
+cp cuda/lib64/libcudnn* /usr/local/cuda-10.1/lib64/
+cp cuda/include/cudnn.h /usr/local/cuda-10.1/include/
 ```
 
+From now on, the GPU is fully utiized:
 
 ```
-# Verify that TF is using gpu
-from tensorflow.python.client import device_lib
-print(device_lib.list_local_devices())
-```
-
-
-```
-# Fix keras loadlib issue
-cd /usr/local/cuda-10.1/lib64
-for lib in $(ls *10.1* | sed -e 's/.10.1.*//g' | uniq); do ln -s "$lib" "$lib.10.0" ; done
- ln -s /usr/lib64/libcublas.so.10 /usr/lib64/libcublas.so.10.0
-export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
-```
-
-```
-# Verify that you see GPU in Keras:
-#
-from keras import backend as K
-K.tensorflow_backend._get_available_gpus()
+sudo su -
+./runenv.sh keras_mnist_cnn.py
 ```
