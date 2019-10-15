@@ -17,6 +17,8 @@ yum install -y cuda-10-1
 echo "Install keras...."
 pip install keras
 pip install keras_datasets
+pip install jupyterlab
+pip install jupyter
 echo "export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo "source ~/venvs/tensorflow/bin/activate" >> ~/.bashrc
 iptables -F
