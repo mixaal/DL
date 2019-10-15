@@ -28,8 +28,7 @@ https://docs.nvidia.com/deeplearning/sdk/cudnn-sla/index.html
 Here is the download link (you must be in nvidia free developer program):
 https://developer.nvidia.com/compute/machine-learning/cudnn/secure/7.6.4.38/Production/10.1_20190923/cudnn-10.1-linux-x64-v7.6.4.38.tgz
 
-Unzip the library and:
-
+Upload the library on all nodes and install it:
 ```
 sudo su -
 tar xzvf cudnn-10.1-linux-x64-v7.6.4.38.tgz 
@@ -42,4 +41,22 @@ From now on, the GPU is fully utiized:
 ```
 sudo su -
 ./runenv.sh keras_mnist_cnn.py
+```
+
+Now copy the `keras_mnist_horovod.py` to all nodes. Create the following file on each node (wrapper):
+```
+cat /root/run_horovod.sh
+PWD=$(pwd)
+
+set -x
+sudo su - <<EOC
+source ~/venvs/tensorflow/bin/activate
+export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATHA
+python keras_mnist_horovod.py
+EOC
+```
+
+Run horovod:
+```
+time horovodrun -np 2 -H mixaal-gpu-2:1,mixaal-gpu-1:1 bash -c /root/run_horovod.sh
 ```
