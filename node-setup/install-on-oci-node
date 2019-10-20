@@ -22,6 +22,10 @@ pip install jupyter
 pip install matplotlib
 pip install pandas
 pip install seaborn
+pip install oci
+pip install ipyparallel
+ipcluster nbextension enable
+pip install tensorflow_datasets
 echo "export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo "source ~/venvs/tensorflow/bin/activate" >> ~/.bashrc
 iptables -F
