@@ -1,5 +1,8 @@
 # Deep Learning Setup
 
+
+## Basic Setup
+
 The following combination is supported:
  * tensorflow-gpu 2.0.0
  * cuda-10.1.168
@@ -43,6 +46,8 @@ sudo su -
 ./runenv.sh keras_mnist_cnn.py
 ```
 
+## Running with Horovod
+
 Now copy the `keras_mnist_horovod.py` to all nodes. Create the following file on each node (wrapper):
 ```
 cat /root/run_horovod.sh
@@ -61,6 +66,8 @@ Run horovod:
 time horovodrun -np 2 -H mixaal-gpu-2:1,mixaal-gpu-1:1 bash -c /root/run_horovod.sh
 ```
 
+## Jupiter Notebook Service
+
 Run jupyter:
 ```
 nohup jupyter notebook --allow-root --ip 127.0.0.1 &
@@ -72,3 +79,12 @@ ssh -o ServerAliveInterval=240 -L 8888:localhost:8888 root@mixaal-gpu-1
 ```
 
 Now you can access the notebook via the URL you see in the jupyter console.
+
+## Jupyter Notebooks
+
+The following notebooks are pre-installed:
+
+* Africa Crisis: The one from kaggle.com shows `seaborn` and `matplotlib.pyplot` in action
+* Keras ML Demo: MNIST dataset running on GPU and libcudnn-7.6.4
+* ImageNet: Pre-trained VGG16 architecture running on GPU, activation layers shown
+* Mandelbrot: using `IPython.parallel` to execute Mandelbrot's fractal computation in parallel
