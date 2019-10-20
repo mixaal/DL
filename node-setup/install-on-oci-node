@@ -14,6 +14,7 @@ echo "Install tensorflow...."
 pip install --upgrade tensorflow-gpu
 echo "Make sure cuda is installed...."
 yum install -y cuda-10-1
+yum install -y tree
 echo "Install keras...."
 pip install keras
 pip install keras_datasets
@@ -24,6 +25,7 @@ pip install pandas
 pip install seaborn
 pip install oci
 pip install ipyparallel
+pip install pillow
 ipcluster nbextension enable
 pip install tensorflow_datasets
 echo "export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
