@@ -1,0 +1,46 @@
+OCI_CONFIG="$HOME/.oci/config"
+BUCKET="deep-learning"
+
+[ -f "$OCI_CONFIG" ] || {
+  echo "You don't have oci config in $OCI_CONFIG"
+  exit 1
+}
+
+
+grep -q key_file= "$OCI_CONFIG" || {
+  echo "No key file setup in $OCI_CONFIG, search for key_file= statement"
+  exit 1
+}
+
+
+grep -q tenancy= "$OCI_CONFIG" || {
+  echo "No tenancy setup in $OCI_CONFIG, search for tenancy= statement"
+  exit 1
+}
+
+eval $(grep key_file= "$OCI_CONFIG")
+eval $(grep tenancy= "$OCI_CONFIG")
+
+[ -f "$key_file" ] || {
+  echo "Key file $key_file doesn't exist, search $OCI_CONFIG for keyfile= statement."
+  exit 1
+}
+
+[ -z "$tenancy" ] && {
+  echo "Tenancy not setup, search $OCI_CONFIG for tenancy= statement."
+  exit 1
+}
+
+oci os bucket get --bucket-name "$BUCKET" && {
+  echo "Bucket $BUCKET already created."
+  exit 0
+}
+
+oci os bucket create --name "$BUCKET" --compartment-id "$tenancy" && {
+  echo "Bucket $BUCKET created."
+  exit 0
+}
+
+
+echo "Failed to create bucket $BUCKET".
+exit 1

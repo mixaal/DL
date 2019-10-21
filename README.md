@@ -1,6 +1,5 @@
 # Deep Learning Setup
 
-
 ## Basic Setup
 
 The following combination is supported:
@@ -88,3 +87,22 @@ The following notebooks are pre-installed:
 * Keras ML Demo: MNIST dataset running on GPU and libcudnn-7.6.4
 * ImageNet: Pre-trained VGG16 architecture running on GPU, activation layers shown
 * Mandelbrot: using `IPython.parallel` to execute Mandelbrot's fractal computation in parallel
+
+## Object Store Setup
+
+Create $HOME/.oci/config:
+
+```
+[DEFAULT]
+user=<user ocid>
+fingerprint=<private key file fingerprint>
+key_file=<private key file>
+tenancy=<user tenancy ocid>
+region=<your tenant region>
+pass_phrase=<key file passphrase>
+```
+
+Create bucket for deep learning:
+```
+scripts/create-bucket
+```

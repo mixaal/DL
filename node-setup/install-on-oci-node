@@ -24,6 +24,7 @@ pip install matplotlib
 pip install pandas
 pip install seaborn
 pip install oci
+pip install oci-cli
 pip install ipyparallel
 pip install pillow
 ipcluster nbextension enable
