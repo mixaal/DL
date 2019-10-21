@@ -1,0 +1,37 @@
+#!/bin/bash -x
+
+
+ARG="$1"
+BUCKET="deep-learning"
+
+[ -f "$ARG" ] && {
+  echo "Uploading file $ARG to object store..."
+  oci os object put -bn $BUCKET --file "$ARG" --name "$ARG" --force || {
+      echo "Failed to upload $ARG into $BUCKET !"
+      echo "$f" >> failed.$$
+    }
+}
+
+[ -d "$ARG" ] && {
+  echo "Uploading directory $ARG to object store..."
+
+  DIR=$(dirname "$ARG")
+  cd "$DIR"
+  BASE=$(basename "$ARG")
+
+  for f in $(find $BASE -type f); do 
+    echo "Uploading $f ... "
+    oci os object put -bn $BUCKET --file "$f" --name "$f" --force || {
+      echo "Failed to upload $f into $BUCKET !"
+      echo "$f" >> failed.$$
+    }
+    echo "done."
+  done
+}
+
+[ -f "failed.$$" ] && {
+  echo "Following files were not uploaded:"
+  cat "failed.$$"
+  rm -f "failed.$$"
+  exit 1
+}

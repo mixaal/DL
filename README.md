@@ -90,6 +90,8 @@ The following notebooks are pre-installed:
 
 ## Object Store Setup
 
+### Create Bucket
+
 Create $HOME/.oci/config:
 
 ```
@@ -105,4 +107,11 @@ pass_phrase=<key file passphrase>
 Create bucket for deep learning:
 ```
 scripts/create-bucket
+```
+
+
+### Upload Images into Bucket
+
+```
+scripts/upload_to_bucket ~opc/cats_dogs
 ```
