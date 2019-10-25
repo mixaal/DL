@@ -27,6 +27,7 @@ pip install oci
 pip install oci-cli
 pip install ipyparallel
 pip install pillow
+pip install sklearn
 ipcluster nbextension enable
 pip install tensorflow_datasets
 echo "export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
