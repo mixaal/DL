@@ -1,0 +1,1 @@
+curl -kv -X PUT -H 'Content-type: application/json'  --data-binary @example-nb-upload.json 'http://localhost:8888/api/contents/ExampleUpload.ipynb?token=cb077d09f91746b5f04787e43d81b14535fbf1c5c8100f49'

@@ -1,0 +1,47 @@
+{
+  "name": "ExampleUpload.ipynb",
+  "path": "ExampleUpload.ipynb",
+  "type": "notebook",
+  "format": "json",
+  "content": {
+    "nbformat": 4,
+    "nbformat_minor": 2,
+    "metadata": {
+      "kernelspec": {
+        "display_name": "Python 2",
+        "name": "python2",
+        "language": "python"
+      },
+      "language_info": {
+        "mimetype": "text/x-python",
+        "nbconvert_exporter": "python",
+        "version": "2.7.5",
+        "name": "python",
+        "file_extension": ".py",
+        "pygments_lexer": "ipython2",
+        "codemirror_mode": {
+          "version": 2,
+          "name": "ipython"
+        }
+      }
+    },
+    "cells": [
+      {
+        "source": "# Example Page\nSample page which shows the notebook upload",
+        "cell_type": "markdown",
+       "metadata": {
+        }
+      },
+      {
+        "cell_type": "code",
+        "execution_count": 0,
+        "source": "! tree -d /home/opc/cats_dogs/",
+        "outputs": [],
+	"metadata": {
+          "trusted": true
+        }
+      }
+     ]
+   }
+}
+
