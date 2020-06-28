@@ -33,6 +33,8 @@ pip install pillow
 pip install sklearn
 pip install line_profiler
 pip install snakeviz
+pip install jupyterthemes
+jt -t chesterish -T -N -kl # Dark theme, kernel log, name and toolbar on
 ipcluster nbextension enable
 pip install tensorflow_datasets
 echo "export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
