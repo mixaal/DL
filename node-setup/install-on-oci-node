@@ -22,6 +22,9 @@ pip install jupyterlab
 pip install jupyter
 pip install matplotlib
 pip install pandas
+pip install geopandas
+pip install descartes
+pip install mplleaflet
 pip install seaborn
 pip install oci
 pip install oci-cli
