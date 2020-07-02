@@ -1,0 +1,36 @@
+FROM oraclelinux:8
+RUN yum install -y gcc gcc-c++ python3 vim tree python3-pip-wheel net-tools python3-devel atlas atlas-devel gcc-gfortran openssl-devel libffi-devel
+
+RUN curl -kv https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 ./get-pip.py
+RUN pip install --upgrade tensorflow-gpu
+RUN pip install keras
+RUN pip install keras_datasets
+RUN pip install jupyterlab
+RUN pip install jupyter
+RUN pip install matplotlib
+RUN pip install pandas
+RUN pip install geopandas
+RUN pip install descartes
+RUN pip install mplleaflet
+RUN pip install seaborn
+RUN pip install oci
+RUN pip install oci-cli
+RUN pip install ipyparallel
+RUN pip install pillow
+RUN pip install sklearn
+RUN pip install line_profiler
+RUN pip install snakeviz
+RUN pip install jupyterthemes
+RUN pip install ipywidgets
+RUN pip install pymysql
+RUN jupyter nbextension enable --py widgetsnbextension
+RUN jt -t chesterish -T -N -kl # Dark theme, kernel log, name and toolbar on
+#ipcluster nbextension enable
+RUN pip install tensorflow_datasets
+RUN mkdir -p /root/.ipython/profile_default/startup
+ADD startup.ipy  /root/.ipython/profile_default/startup
+
+ADD run-notebook.sh /root
+ENTRYPOINT /root/run-notebook.sh
+
+EXPOSE 8888 8889 8080
