@@ -7,5 +7,8 @@ fi
 
 export PYTHONPATH=/usr/local/python/
 
+nohup ipcluster start &
+
+cd /jupyter_root
 nohup jupyter notebook --allow-root --ip 0.0.0.0 --no-browser --port 8888 &
 nohup jupyter lab --ip 0.0.0.0 --no-browser --allow-root --port 8889

@@ -30,7 +30,6 @@ RUN pip install tensorflow_datasets
 RUN mkdir -p /root/.ipython/profile_default/startup
 ADD startup.ipy  /root/.ipython/profile_default/startup
 
-ADD run-notebook.sh /root
 ADD install-eigen /root
 ADD install-opencv4 /root
 ADD get-opencv4 /root
@@ -40,11 +39,26 @@ RUN /root/install-glog
 RUN /root/get-opencv4
 RUN /root/install-opencv4
 
-RUN mkdir /images
-RUN mkdir /examples
+RUN mkdir /jupyter_root
+RUN mkdir /jupyter_root/images
+RUN mkdir /jupyter_root/examples
+RUN mkdir /jupyter_root/datasets
+RUN mkdir /jupyter_root/weights
+ADD run-notebook.sh /root
 
-ADD katri01.jpg /images
-ADD Keras_ML_Demo.ipynb /examples
+ADD images/*jpg /jupyter_root/images/
+ADD examples/*ipynb /jupyter_root/examples/
+ADD datasets/*csv /jupyter_root/datasets/
+ADD weights/*hdf5 /jupyter_root/weights/
+
+RUN ipcluster nbextension enable
+
+RUN pip install line_profiler
+RUN pip install py-heat-magic
+
+#COPY index.css usr/local/lib/python3.6/site-packages/jupyterlab/themes/\@jupyterlab/theme-dark-extension/index.css 
+#RUN yum install -y nodejs npm
+#RUN jupyter lab build
 
 ENTRYPOINT /root/run-notebook.sh
 
