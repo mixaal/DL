@@ -1,5 +1,5 @@
 FROM oraclelinux:8
-RUN yum install -y gcc gcc-c++ python3 vim tree python3-pip-wheel net-tools python3-devel atlas atlas-devel gcc-gfortran openssl-devel libffi-devel
+RUN yum install -y gcc gcc-c++ python3 vim tree python3-pip-wheel net-tools python3-devel atlas atlas-devel gcc-gfortran openssl-devel libffi-devel zip unzip cmake pkg-config automake openblas make lapack libtool
 
 RUN curl -kv https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 ./get-pip.py
 RUN pip install --upgrade tensorflow-gpu
@@ -31,6 +31,21 @@ RUN mkdir -p /root/.ipython/profile_default/startup
 ADD startup.ipy  /root/.ipython/profile_default/startup
 
 ADD run-notebook.sh /root
+ADD install-eigen /root
+ADD install-opencv4 /root
+ADD get-opencv4 /root
+ADD install-glog /root
+RUN /root/install-eigen
+RUN /root/install-glog
+RUN /root/get-opencv4
+RUN /root/install-opencv4
+
+RUN mkdir /images
+RUN mkdir /examples
+
+ADD katri01.jpg /images
+ADD Keras_ML_Demo.ipynb /examples
+
 ENTRYPOINT /root/run-notebook.sh
 
 EXPOSE 8888 8889 8080

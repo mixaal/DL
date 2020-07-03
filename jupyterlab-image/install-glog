@@ -1,0 +1,11 @@
+#!/bin/bash -xe
+
+cd
+curl -L -kv https://github.com/google/glog/archive/master.zip --output master.zip
+unzip master.zip 
+cd glog-master/
+aclocal
+./autogen.sh 
+./configure 
+make
+make install

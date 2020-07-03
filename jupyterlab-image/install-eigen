@@ -1,0 +1,11 @@
+#!/bin/bash -xe
+
+cd
+curl -L -kv https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.zip --output eigen.zip
+unzip eigen.zip 
+cd eigen-3.3.7/
+mkdir build_dir
+cd build_dir/
+cmake ../
+make
+make install
