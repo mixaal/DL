@@ -44,17 +44,22 @@ RUN mkdir /jupyter_root/images
 RUN mkdir /jupyter_root/examples
 RUN mkdir /jupyter_root/datasets
 RUN mkdir /jupyter_root/weights
+RUN mkdir /jupyter_root/models
 ADD run-notebook.sh /root
 
 ADD images/*jpg /jupyter_root/images/
 ADD examples/*ipynb /jupyter_root/examples/
 ADD datasets/*csv /jupyter_root/datasets/
-ADD weights/*hdf5 /jupyter_root/weights/
+ADD models/* /jupyter_root/models/
+#ADD weights/*hdf5 /jupyter_root/weights/
 
 RUN ipcluster nbextension enable
 
 RUN pip install line_profiler
 RUN pip install py-heat-magic
+
+RUN yum remove -y gcc gcc-c++ gcc-gfortran openssl-devel libffi-devel cmake make libtool
+RUN rm -rf /root/opencv* /root/.cache/pip/http/* /root/eigen* /root/glog-master/
 
 #COPY index.css usr/local/lib/python3.6/site-packages/jupyterlab/themes/\@jupyterlab/theme-dark-extension/index.css 
 #RUN yum install -y nodejs npm
