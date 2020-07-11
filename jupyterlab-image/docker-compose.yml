@@ -1,0 +1,28 @@
+version: '3.0'
+services:
+  jupyterlab:
+    build: .
+    ports:
+    - "8888:8888"
+    - "8889:8889"
+    volumes:
+    - ..:/notebooks
+    environment:
+      MYSQL_PASSWORD: bafik
+      MYSQL_HOST: database
+  database:
+    image: mariadb
+    ports:
+    - "3307:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: bafik
+      MYSQL_DATABASE: money
+    volumes:
+    - ./mysql-dump:/docker-entrypoint-initdb.d
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+    - 8080:8080
