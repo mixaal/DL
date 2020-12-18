@@ -62,9 +62,16 @@ RUN yum remove -y gcc gcc-c++ gcc-gfortran openssl-devel libffi-devel cmake make
 RUN rm -rf /root/opencv* /root/.cache/pip/http/* /root/eigen* /root/glog-master/
 
 #COPY index.css usr/local/lib/python3.6/site-packages/jupyterlab/themes/\@jupyterlab/theme-dark-extension/index.css 
-#RUN yum install -y nodejs npm
+RUN pip install xgboost
+RUN yum install -y nodejs npm 
+RUN yum install -y cairo-devel
+RUN pip install flask  cairosvg epicbox 
+# Enable this one for Net2Vis
+#ADD  Net2Vis /
+#RUN cd Net2Vis/net2vis && npm install
+
 #RUN jupyter lab build
 
 ENTRYPOINT /root/run-notebook.sh
 
-EXPOSE 8888 8889 8080
+EXPOSE 8888 8889 8080 6006
