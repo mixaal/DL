@@ -1,9 +1,9 @@
 FROM oraclelinux:8
-#RUN yum install -y gcc gcc-c++ python3 vim tree python3-pip-wheel net-tools python3-devel atlas atlas-devel gcc-gfortran openssl-devel libffi-devel zip unzip cmake pkg-config automake openblas make lapack libtool
-RUN yum install -y python3 vim tree python3-pip-wheel net-tools python3-devel zip unzip
+#RUN yum install -y python3 tree python3-pip-wheel net-tools python3-devel zip unzip
+RUN yum install -y python3 tree python3-pip-wheel zip unzip
 
 RUN curl -kv https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 ./get-pip.py
-RUN pip install jupyterlab
+#RUN pip install jupyterlab
 RUN pip install jupyter
 RUN pip install matplotlib
 RUN pip install pandas
@@ -19,7 +19,7 @@ RUN pip install line_profiler
 RUN pip install snakeviz
 RUN pip install jupyterthemes
 RUN pip install ipywidgets
-RUN pip install xgboost
+#RUN pip install xgboost
 RUN jupyter nbextension enable --py widgetsnbextension
 RUN jt -t chesterish -T -N -kl # Dark theme, kernel log, name and toolbar on
 RUN mkdir -p /root/.ipython/profile_default/startup
