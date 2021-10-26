@@ -38,10 +38,13 @@ RUN pip install py-heat-magic
 RUN rm -rf /root/opencv* /root/.cache/pip/http/* /root/eigen* /root/glog-master/
 
 RUN mkdir -p /root/.oci/
-ADD run-notebook.sh /root
+ADD execute-notebook.sh /root
 RUN curl -kv -L "https://github.com/mixaal/trollbox/blob/main/build/trollbox-linux-amd64?raw=true" -o /root/.oci/trollbox-linux-amd64 
 RUN chmod +x /root/.oci/trollbox-linux-amd64
+RUN chmod +x /root/execute-notebook.sh
 
-ENTRYPOINT /root/run-notebook.sh
+RUN pip install nbconvert
+
+ENTRYPOINT /root/execute-notebook.sh
 
 EXPOSE 8888
